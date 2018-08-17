@@ -17,7 +17,7 @@ namespace BankKata.Tests
         {
             _transactionRepository = Substitute.For<ITransactionRepository>();
             _console = Substitute.For<Console>();
-            _statementPrinter = Substitute.For<StatementPrinter>();
+            _statementPrinter = Substitute.For<StatementPrinter>(_console);
             _clock = Substitute.For<Clock>();
             _clock.GetTodayAsString().Returns(SystemDate);
         }
