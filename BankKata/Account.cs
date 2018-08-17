@@ -4,19 +4,23 @@ namespace BankKata
 {
     public class Account
     {
+        private readonly Console _console;
+
+        public Account(Console console)
+        {
+            _console = console;
+        }
+        
         public void Deposit(int amount)
         {
-            throw new NotImplementedException();
         }
 
         public void Withdrawal(int amount)
         {
-            throw new NotImplementedException();
         }
 
         public void PrintStatement()
         {
-            throw new NotImplementedException();
         }
     }
 }
