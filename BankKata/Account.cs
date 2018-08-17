@@ -15,19 +15,23 @@
         
         public void Deposit(int amount)
         {
-            var transaction = new Transaction(_clock.GetTodayAsString(), amount);
-            _transactionRepository.Add(transaction);
+            AddTransactionFor(amount);
         }
 
         public void Withdrawal(int amount)
         {
-            var transaction = new Transaction(_clock.GetTodayAsString(), -amount);
-            _transactionRepository.Add(transaction);
+            AddTransactionFor(-amount);
         }
 
         public void PrintStatement()
         {
             _statementPrinter.Print(_transactionRepository.All());
+        }
+        
+        private void AddTransactionFor(int amount)
+        {
+            var transaction = new Transaction(_clock.GetTodayAsString(), amount);
+            _transactionRepository.Add(transaction);
         }
     }
 }
