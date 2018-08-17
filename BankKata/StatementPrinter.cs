@@ -25,11 +25,11 @@ namespace BankKata
 
         private void PrintStatementsFor(ReadOnlyCollection<Transaction> transactions)
         {
-            var statementLines = PrepareStatementLines(transactions);
+            var statementLines = CreateStatementLines(transactions);
             PrintStatementLinesInReverseChronology(statementLines);
         }
 
-        private List<string> PrepareStatementLines(ReadOnlyCollection<Transaction> transactions)
+        private List<string> CreateStatementLines(ReadOnlyCollection<Transaction> transactions)
         {
             var statementLines = new List<string>();
             var runningBalance = 0;
