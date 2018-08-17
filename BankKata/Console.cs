@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BankKata
+﻿namespace BankKata
 {
     public class Console
     {
