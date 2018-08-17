@@ -11,7 +11,12 @@ namespace BankKata.Tests.Features
             var transactionRepository = new TransactionRepository();
             var console = Substitute.For<Console>();
             var statementPrinter = new StatementPrinter(console);
-            var clock = new Clock();
+            var clock = Substitute.For<Clock>();
+            clock.GetTodayAsString().Returns(
+                "01/04/2014",
+                "02/04/2014",
+                "10/04/2014"
+            );
             var account = new Account(transactionRepository, statementPrinter, clock);
             account.Deposit(1000);
             account.Withdrawal(100);
