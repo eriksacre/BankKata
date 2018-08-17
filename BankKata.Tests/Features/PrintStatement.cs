@@ -8,7 +8,7 @@ namespace BankKata.Tests.Features
         [Test]
         public void StatementShouldContainAllTransactionsInReverseChronologicalOrder()
         {
-            var transactionRepository = Substitute.For<ITransactionRepository>();
+            var transactionRepository = new TransactionRepository();
             var console = Substitute.For<Console>();
             var clock = new Clock();
             var account = new Account(transactionRepository, console, clock);
