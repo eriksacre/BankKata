@@ -6,7 +6,7 @@ namespace BankKata.Tests.Features
     public class PrintStatement
     {
         [Test]
-        public void StatementShouldContainAllTransactions()
+        public void StatementShouldContainAllTransactionsInReverseChronologicalOrder()
         {
             var console = Substitute.For<Console>();
             var account = new Account(console);
