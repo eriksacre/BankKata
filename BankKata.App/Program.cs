@@ -2,7 +2,7 @@
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var transactionRepository = new TransactionRepository();
             var console = new Console();
