@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankKata.Tests", "BankKata.Tests\BankKata.Tests.csproj", "{68D38D57-1A30-48EE-BB20-A23765BE0F20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankKata", "BankKata\BankKata.csproj", "{3DF22C4E-7CA3-40BD-8EDA-9BAA19106573}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{68D38D57-1A30-48EE-BB20-A23765BE0F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68D38D57-1A30-48EE-BB20-A23765BE0F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68D38D57-1A30-48EE-BB20-A23765BE0F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF22C4E-7CA3-40BD-8EDA-9BAA19106573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF22C4E-7CA3-40BD-8EDA-9BAA19106573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF22C4E-7CA3-40BD-8EDA-9BAA19106573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF22C4E-7CA3-40BD-8EDA-9BAA19106573}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
