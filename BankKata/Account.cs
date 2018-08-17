@@ -23,6 +23,8 @@ namespace BankKata
 
         public void Withdrawal(int amount)
         {
+            var transaction = new Transaction(_clock.GetTodayAsString(), -amount);
+            _transactionRepository.Add(transaction);
         }
 
         public void PrintStatement()
