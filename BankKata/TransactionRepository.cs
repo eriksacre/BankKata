@@ -1,10 +1,20 @@
-﻿namespace BankKata
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace BankKata
 {
     public class TransactionRepository : ITransactionRepository
     {
+        private readonly List<Transaction> _transactions = new List<Transaction>();
+        
         public void Add(Transaction transaction)
         {
-            throw new System.NotImplementedException();
+            _transactions.Add(transaction);
+        }
+
+        public ReadOnlyCollection<Transaction> All()
+        {
+            return _transactions.AsReadOnly();
         }
     }
 }
