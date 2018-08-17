@@ -6,7 +6,7 @@ namespace BankKata
     {
         public virtual void PrintLine(string text)
         {
-            throw new NotImplementedException();
+            System.Console.WriteLine(text);
         }
     }
 }
