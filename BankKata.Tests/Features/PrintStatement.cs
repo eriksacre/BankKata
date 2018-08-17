@@ -10,8 +10,9 @@ namespace BankKata.Tests.Features
         {
             var transactionRepository = new TransactionRepository();
             var console = Substitute.For<Console>();
+            var statementPrinter = new StatementPrinter();
             var clock = new Clock();
-            var account = new Account(transactionRepository, console, clock);
+            var account = new Account(transactionRepository, statementPrinter, clock);
             account.Deposit(1000);
             account.Withdrawal(100);
             account.Deposit(500);

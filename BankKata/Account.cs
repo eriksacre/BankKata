@@ -5,13 +5,13 @@ namespace BankKata
     public class Account
     {
         private readonly ITransactionRepository _transactionRepository;
-        private readonly Console _console;
+        private readonly StatementPrinter _statementPrinter;
         private readonly Clock _clock;
 
-        public Account(ITransactionRepository transactionRepository, Console console, Clock clock)
+        public Account(ITransactionRepository transactionRepository, StatementPrinter statementPrinter, Clock clock)
         {
             _transactionRepository = transactionRepository;
-            _console = console;
+            _statementPrinter = statementPrinter;
             _clock = clock;
         }
         
@@ -29,6 +29,7 @@ namespace BankKata
 
         public void PrintStatement()
         {
+            _statementPrinter.Print(_transactionRepository.All());
         }
     }
 }

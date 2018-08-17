@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using System.Collections.Generic;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace BankKata.Tests
@@ -7,6 +8,7 @@ namespace BankKata.Tests
     {
         private ITransactionRepository _transactionRepository;
         private Console _console;
+        private StatementPrinter _statementPrinter;
         private Clock _clock;
         private const string SystemDate = "12/05/2017";
 
@@ -15,6 +17,7 @@ namespace BankKata.Tests
         {
             _transactionRepository = Substitute.For<ITransactionRepository>();
             _console = Substitute.For<Console>();
+            _statementPrinter = Substitute.For<StatementPrinter>();
             _clock = Substitute.For<Clock>();
             _clock.GetTodayAsString().Returns(SystemDate);
         }
@@ -22,7 +25,7 @@ namespace BankKata.Tests
         [Test]
         public void Deposit_PositiveAmount_StoresTransaction()
         {
-            var account = new Account(_transactionRepository, _console, _clock);
+            var account = new Account(_transactionRepository, _statementPrinter, _clock);
             var expectedTransaction = new Transaction(SystemDate, 100);
 
             account.Deposit(100);
@@ -33,12 +36,24 @@ namespace BankKata.Tests
         [Test]
         public void Withdrawal_PositiveAmount_StoresTransactionForNegativeAmount()
         {
-            var account = new Account(_transactionRepository, _console, _clock);
+            var account = new Account(_transactionRepository, _statementPrinter, _clock);
             var expectedTransaction = new Transaction(SystemDate, -100);
 
             account.Withdrawal(100);
 
             _transactionRepository.Received().Add(expectedTransaction);
+        }
+
+        [Test]
+        public void PrintStatement_MultipleTransactionsInRepo_PrintsAllTransactions()
+        {
+            var transactionList = new List<Transaction>().AsReadOnly();
+            _transactionRepository.All().Returns(transactionList);
+            var account = new Account(_transactionRepository, _statementPrinter, _clock);
+            
+            account.PrintStatement();
+
+            _statementPrinter.Received().Print(transactionList);
         }
     }
 }
