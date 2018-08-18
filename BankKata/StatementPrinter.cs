@@ -5,9 +5,9 @@ namespace BankKata
 {
     public class StatementPrinter : IStatementPrinter
     {
-        private readonly Console _console;
+        private readonly IConsole _console;
 
-        public StatementPrinter(Console console)
+        public StatementPrinter(IConsole console)
         {
             _console = console;
         }

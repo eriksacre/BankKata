@@ -1,8 +1,8 @@
 ﻿namespace BankKata
 {
-    public class Console
+    public class Console : IConsole
     {
-        public virtual void PrintLine(string text)
+        public void PrintLine(string text)
         {
             System.Console.WriteLine(text);
         }

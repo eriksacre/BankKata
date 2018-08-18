@@ -9,7 +9,7 @@ namespace BankKata.Tests
         [Test]
         public void Print_NoTransactions_PrintsHeader()
         {
-            var console = Substitute.For<Console>();
+            var console = Substitute.For<IConsole>();
             var statementPrinter = new StatementPrinter(console);
             var emptyList = new List<Transaction>().AsReadOnly();
             
@@ -21,7 +21,7 @@ namespace BankKata.Tests
         [Test]
         public void Print_MultipleTransactions_PrintInReverseChronologicalOrder()
         {
-            var console = Substitute.For<Console>();
+            var console = Substitute.For<IConsole>();
             var statementPrinter = new StatementPrinter(console);
             var transactions = new List<Transaction>
             {
