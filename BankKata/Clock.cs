@@ -2,9 +2,9 @@
 
 namespace BankKata
 {
-    public class Clock
+    public class Clock : IClock
     {
-        public virtual string GetTodayAsString()
+        public string GetTodayAsString()
         {
             return Now().ToString("dd/MM/yyyy");
         }

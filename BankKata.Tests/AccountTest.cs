@@ -8,7 +8,7 @@ namespace BankKata.Tests
     {
         private ITransactionRepository _transactionRepository;
         private IStatementPrinter _statementPrinter;
-        private Clock _clock;
+        private IClock _clock;
         private const string SystemDate = "12/05/2017";
 
         [SetUp]
@@ -16,7 +16,7 @@ namespace BankKata.Tests
         {
             _transactionRepository = Substitute.For<ITransactionRepository>();
             _statementPrinter = Substitute.For<IStatementPrinter>();
-            _clock = Substitute.For<Clock>();
+            _clock = Substitute.For<IClock>();
             _clock.GetTodayAsString().Returns(SystemDate);
         }
 

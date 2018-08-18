@@ -11,7 +11,7 @@ namespace BankKata.Tests.Features
             var transactionRepository = new TransactionRepository();
             var console = Substitute.For<Console>();
             var statementPrinter = new StatementPrinter(console);
-            var clock = Substitute.For<Clock>();
+            var clock = Substitute.For<IClock>();
             clock.GetTodayAsString().Returns(
                 "01/04/2014",
                 "02/04/2014",

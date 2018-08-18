@@ -4,9 +4,9 @@
     {
         private readonly ITransactionRepository _transactionRepository;
         private readonly IStatementPrinter _statementPrinter;
-        private readonly Clock _clock;
+        private readonly IClock _clock;
 
-        public Account(ITransactionRepository transactionRepository, IStatementPrinter statementPrinter, Clock clock)
+        public Account(ITransactionRepository transactionRepository, IStatementPrinter statementPrinter, IClock clock)
         {
             _transactionRepository = transactionRepository;
             _statementPrinter = statementPrinter;
