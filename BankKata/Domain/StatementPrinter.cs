@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace BankKata
+namespace BankKata.Domain
 {
     public class StatementPrinter : IStatementPrinter
     {

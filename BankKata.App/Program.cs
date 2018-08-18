@@ -1,4 +1,7 @@
-﻿namespace BankKata.App
+﻿using BankKata.Domain;
+using BankKata.External;
+
+namespace BankKata.App
 {
     class Program
     {

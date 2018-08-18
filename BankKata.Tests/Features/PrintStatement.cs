@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using BankKata.Domain;
+using BankKata.External;
+using NUnit.Framework;
 using NSubstitute;
 
 namespace BankKata.Tests.Features

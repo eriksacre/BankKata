@@ -1,4 +1,6 @@
-﻿namespace BankKata
+﻿using BankKata.Domain;
+
+namespace BankKata.External
 {
     public class Console : IConsole
     {

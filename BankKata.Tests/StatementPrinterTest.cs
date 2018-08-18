@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BankKata.Domain;
 using NSubstitute;
 using NUnit.Framework;
 

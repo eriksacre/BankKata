@@ -1,4 +1,4 @@
-﻿namespace BankKata
+﻿namespace BankKata.Domain
 {
     public class Account
     {

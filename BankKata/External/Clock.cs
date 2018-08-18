@@ -1,6 +1,7 @@
 ﻿using System;
+using BankKata.Domain;
 
-namespace BankKata
+namespace BankKata.External
 {
     public class Clock : IClock
     {

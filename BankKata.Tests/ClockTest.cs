@@ -1,4 +1,5 @@
 ﻿using System;
+using BankKata.External;
 using NUnit.Framework;
 
 namespace BankKata.Tests
