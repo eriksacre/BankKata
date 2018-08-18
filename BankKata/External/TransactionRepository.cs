@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using BankKata.Domain;
 
-namespace BankKata
+namespace BankKata.External
 {
     public class TransactionRepository : ITransactionRepository
     {
