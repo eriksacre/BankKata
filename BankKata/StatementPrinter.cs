@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace BankKata
 {
-    public class StatementPrinter
+    public class StatementPrinter : IStatementPrinter
     {
         private readonly Console _console;
 
@@ -12,7 +12,7 @@ namespace BankKata
             _console = console;
         }
         
-        public virtual void Print(ReadOnlyCollection<Transaction> transactions)
+        public void Print(ReadOnlyCollection<Transaction> transactions)
         {
             PrintHeader();
             PrintStatementsFor(transactions);

@@ -7,8 +7,7 @@ namespace BankKata.Tests
     public class AccountTest
     {
         private ITransactionRepository _transactionRepository;
-        private Console _console;
-        private StatementPrinter _statementPrinter;
+        private IStatementPrinter _statementPrinter;
         private Clock _clock;
         private const string SystemDate = "12/05/2017";
 
@@ -16,14 +15,7 @@ namespace BankKata.Tests
         public void Setup()
         {
             _transactionRepository = Substitute.For<ITransactionRepository>();
-            // NOTE:
-            // The account test should have no knowledge of Console,
-            // nor does it care about constructor args for StatementPrinter.
-            // We could avoid this by working through an interface IStatementPrinter
-            // but then we would define an interface for the sole purpose of
-            // facilitating this test. Tradeoff!
-            _console = Substitute.For<Console>();
-            _statementPrinter = Substitute.For<StatementPrinter>(_console);
+            _statementPrinter = Substitute.For<IStatementPrinter>();
             _clock = Substitute.For<Clock>();
             _clock.GetTodayAsString().Returns(SystemDate);
         }

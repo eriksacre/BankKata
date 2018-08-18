@@ -3,10 +3,10 @@
     public class Account
     {
         private readonly ITransactionRepository _transactionRepository;
-        private readonly StatementPrinter _statementPrinter;
+        private readonly IStatementPrinter _statementPrinter;
         private readonly Clock _clock;
 
-        public Account(ITransactionRepository transactionRepository, StatementPrinter statementPrinter, Clock clock)
+        public Account(ITransactionRepository transactionRepository, IStatementPrinter statementPrinter, Clock clock)
         {
             _transactionRepository = transactionRepository;
             _statementPrinter = statementPrinter;
