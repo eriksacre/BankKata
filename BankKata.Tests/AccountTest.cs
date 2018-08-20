@@ -19,13 +19,13 @@ namespace BankKata.Tests
             _transactionRepository = Substitute.For<ITransactionRepository>();
             _statementPrinter = Substitute.For<IStatementPrinter>();
             _clock = Substitute.For<IClock>();
-            _clock.GetTodayAsString().Returns(SystemDate);
             _account = new Account(_transactionRepository, _statementPrinter, _clock);
         }
 
         [Test]
         public void Deposit_PositiveAmount_StoresTransaction()
         {
+            _clock.GetTodayAsString().Returns(SystemDate);
             var expectedTransaction = new Transaction(SystemDate, 100);
 
             _account.Deposit(100);
@@ -36,6 +36,7 @@ namespace BankKata.Tests
         [Test]
         public void Withdrawal_PositiveAmount_StoresTransactionForNegativeAmount()
         {
+            _clock.GetTodayAsString().Returns(SystemDate);
             var expectedTransaction = new Transaction(SystemDate, -100);
 
             _account.Withdrawal(100);
