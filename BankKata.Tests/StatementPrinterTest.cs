@@ -7,23 +7,29 @@ namespace BankKata.Tests
 {
     public class StatementPrinterTest
     {
+        private IConsole _console;
+        private StatementPrinter _statementPrinter;
+
+        [SetUp]
+        public void Setup()
+        {
+            _console = Substitute.For<IConsole>();
+            _statementPrinter = new StatementPrinter(_console);
+        }
+        
         [Test]
         public void Print_NoTransactions_PrintsHeader()
         {
-            var console = Substitute.For<IConsole>();
-            var statementPrinter = new StatementPrinter(console);
             var emptyList = new List<Transaction>().AsReadOnly();
             
-            statementPrinter.Print(emptyList);
+            _statementPrinter.Print(emptyList);
             
-            console.Received().PrintLine("DATE | AMOUNT | BALANCE");
+            _console.Received().PrintLine("DATE | AMOUNT | BALANCE");
         }
 
         [Test]
         public void Print_MultipleTransactions_PrintInReverseChronologicalOrder()
         {
-            var console = Substitute.For<IConsole>();
-            var statementPrinter = new StatementPrinter(console);
             var transactions = new List<Transaction>
             {
                 new Transaction("01/01/2018", 100),
@@ -31,14 +37,14 @@ namespace BankKata.Tests
                 new Transaction("03/01/2018", 200)
             }.AsReadOnly();
             
-            statementPrinter.Print(transactions);
+            _statementPrinter.Print(transactions);
             
             Received.InOrder(() =>
             {
-                console.PrintLine("DATE | AMOUNT | BALANCE");
-                console.PrintLine("03/01/2018 | 200.00 | 250.00");
-                console.PrintLine("02/01/2018 | -50.00 | 50.00");
-                console.PrintLine("01/01/2018 | 100.00 | 100.00");
+                _console.PrintLine("DATE | AMOUNT | BALANCE");
+                _console.PrintLine("03/01/2018 | 200.00 | 250.00");
+                _console.PrintLine("02/01/2018 | -50.00 | 50.00");
+                _console.PrintLine("01/01/2018 | 100.00 | 100.00");
             });
         }
     }
