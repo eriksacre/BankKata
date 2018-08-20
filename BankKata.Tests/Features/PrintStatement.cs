@@ -7,31 +7,42 @@ namespace BankKata.Tests.Features
 {
     public class PrintStatement
     {
+        private TransactionRepository _transactionRepository;
+        private IConsole _console;
+        private StatementPrinter _statementPrinter;
+        private IClock _clock;
+        private Account _account;
+
+        [SetUp]
+        public void Setup()
+        {
+            _transactionRepository = new TransactionRepository();
+            _console = Substitute.For<IConsole>();
+            _statementPrinter = new StatementPrinter(_console);
+            _clock = Substitute.For<IClock>();
+            _account = new Account(_transactionRepository, _statementPrinter, _clock);
+        }
+
         [Test]
         public void StatementShouldContainAllTransactionsInReverseChronologicalOrder()
         {
-            var transactionRepository = new TransactionRepository();
-            var console = Substitute.For<IConsole>();
-            var statementPrinter = new StatementPrinter(console);
-            var clock = Substitute.For<IClock>();
-            clock.GetTodayAsString().Returns(
+            _clock.GetTodayAsString().Returns(
                 "01/04/2014",
                 "02/04/2014",
                 "10/04/2014"
             );
-            var account = new Account(transactionRepository, statementPrinter, clock);
-            account.Deposit(1000);
-            account.Withdrawal(100);
-            account.Deposit(500);
+            _account.Deposit(1000);
+            _account.Withdrawal(100);
+            _account.Deposit(500);
             
-            account.PrintStatement();
+            _account.PrintStatement();
             
             Received.InOrder(() =>
             {
-                console.PrintLine("DATE | AMOUNT | BALANCE");
-                console.PrintLine("10/04/2014 | 500.00 | 1400.00");
-                console.PrintLine("02/04/2014 | -100.00 | 900.00");
-                console.PrintLine("01/04/2014 | 1000.00 | 1000.00");
+                _console.PrintLine("DATE | AMOUNT | BALANCE");
+                _console.PrintLine("10/04/2014 | 500.00 | 1400.00");
+                _console.PrintLine("02/04/2014 | -100.00 | 900.00");
+                _console.PrintLine("01/04/2014 | 1000.00 | 1000.00");
             });
         }
     }
