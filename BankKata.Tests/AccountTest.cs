@@ -39,7 +39,7 @@ namespace BankKata.Tests
             _clock.GetTodayAsString().Returns(SystemDate);
             var expectedTransaction = new Transaction(SystemDate, -100);
 
-            _account.Withdrawal(100);
+            _account.Withdraw(100);
 
             _transactionRepository.Received().Add(expectedTransaction);
         }

@@ -32,7 +32,7 @@ namespace BankKata.Tests.Features
                 "10/04/2014"
             );
             _account.Deposit(1000);
-            _account.Withdrawal(100);
+            _account.Withdraw(100);
             _account.Deposit(500);
             
             _account.PrintStatement();

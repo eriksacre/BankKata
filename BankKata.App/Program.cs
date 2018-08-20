@@ -14,7 +14,7 @@ namespace BankKata.App
             var account = new Account(transactionRepository, statementPrinter, clock);
             
             account.Deposit(1000);
-            account.Withdrawal(100);
+            account.Withdraw(100);
             account.Deposit(500);
             
             account.PrintStatement();

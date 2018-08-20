@@ -18,7 +18,7 @@
             AddTransactionFor(amount);
         }
 
-        public void Withdrawal(int amount)
+        public void Withdraw(int amount)
         {
             AddTransactionFor(-amount);
         }
