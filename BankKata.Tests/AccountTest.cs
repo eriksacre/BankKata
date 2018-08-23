@@ -24,8 +24,8 @@ namespace BankKata.Tests
         [Test]
         public void Deposit_PositiveAmount_StoresTransaction()
         {
-            var aTransactionDate = "12/05/2017";
-            var anAmount = 100;
+            const string aTransactionDate = "12/05/2017";
+            const int anAmount = 100;
             _clock.GetTodayAsString().Returns(aTransactionDate);
 
             _account.Deposit(anAmount);
@@ -36,8 +36,8 @@ namespace BankKata.Tests
         [Test]
         public void Withdrawal_PositiveAmount_StoresTransactionForNegativeAmount()
         {
-            var aTransactionDate = "1/08/2017";
-            var anAmount = 50;
+            const string aTransactionDate = "1/08/2017";
+            const int anAmount = 50;
             _clock.GetTodayAsString().Returns(aTransactionDate);
 
             _account.Withdraw(anAmount);
