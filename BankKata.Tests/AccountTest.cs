@@ -11,8 +11,6 @@ namespace BankKata.Tests
         private IStatementPrinter _statementPrinter;
         private IClock _clock;
         private Account _account;
-        private const string SystemDate = "12/05/2017";
-        private const int Amount = 100;
 
         [SetUp]
         public void Setup()
@@ -26,21 +24,25 @@ namespace BankKata.Tests
         [Test]
         public void Deposit_PositiveAmount_StoresTransaction()
         {
-            _clock.GetTodayAsString().Returns(SystemDate);
+            var aTransactionDate = "12/05/2017";
+            var anAmount = 100;
+            _clock.GetTodayAsString().Returns(aTransactionDate);
 
-            _account.Deposit(Amount);
+            _account.Deposit(anAmount);
 
-            _transactionRepository.Received().Add(new Transaction(SystemDate, Amount));
+            _transactionRepository.Received().Add(new Transaction(aTransactionDate, anAmount));
         }
 
         [Test]
         public void Withdrawal_PositiveAmount_StoresTransactionForNegativeAmount()
         {
-            _clock.GetTodayAsString().Returns(SystemDate);
+            var aTransactionDate = "1/08/2017";
+            var anAmount = 50;
+            _clock.GetTodayAsString().Returns(aTransactionDate);
 
-            _account.Withdraw(Amount);
+            _account.Withdraw(anAmount);
 
-            _transactionRepository.Received().Add(new Transaction(SystemDate, -Amount));
+            _transactionRepository.Received().Add(new Transaction(aTransactionDate, -anAmount));
         }
 
         [Test]
