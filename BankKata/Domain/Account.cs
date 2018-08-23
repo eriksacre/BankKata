@@ -18,13 +18,13 @@ namespace BankKata.Domain
         
         public void Deposit(int amount)
         {
-            VerifyAmountIsValid(amount);
+            EnsureAmountIsValid(amount);
             AddTransactionFor(amount);
         }
 
         public void Withdraw(int amount)
         {
-            VerifyAmountIsValid(amount);
+            EnsureAmountIsValid(amount);
             AddTransactionFor(-amount);
         }
 
@@ -34,7 +34,7 @@ namespace BankKata.Domain
         }
         
         [AssertionMethod]
-        private static void VerifyAmountIsValid(int amount)
+        private static void EnsureAmountIsValid(int amount)
         {
             if (amount <= 0)
             {
