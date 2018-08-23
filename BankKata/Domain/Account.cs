@@ -1,4 +1,7 @@
-﻿namespace BankKata.Domain
+﻿using System;
+using JetBrains.Annotations;
+
+namespace BankKata.Domain
 {
     public class Account
     {
@@ -15,11 +18,13 @@
         
         public void Deposit(int amount)
         {
+            VerifyAmountIsValid(amount);
             AddTransactionFor(amount);
         }
 
         public void Withdraw(int amount)
         {
+            VerifyAmountIsValid(amount);
             AddTransactionFor(-amount);
         }
 
@@ -28,6 +33,15 @@
             _statementPrinter.Print(_transactionRepository.All());
         }
         
+        [AssertionMethod]
+        private static void VerifyAmountIsValid(int amount)
+        {
+            if (amount <= 0)
+            {
+                throw new ArgumentException("Amount must be a positive value");
+            }
+        }
+
         private void AddTransactionFor(int amount)
         {
             var transaction = new Transaction(_clock.GetTodayAsString(), amount);

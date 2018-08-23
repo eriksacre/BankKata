@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BankKata.Domain;
 using NSubstitute;
 using NUnit.Framework;
@@ -32,6 +33,22 @@ namespace BankKata.Tests
         }
 
         [Test]
+        public void Deposit_NegativeAmount_ThrowsArgumentException()
+        {
+            void Act() => _account.Deposit(-1);
+
+            Assert.That(Act, Throws.TypeOf<ArgumentException>());
+        }
+
+        [Test]
+        public void Deposit_ZeroAmount_ThrowsArgumentException()
+        {
+            void Act() => _account.Deposit(0);
+            
+            Assert.That(Act, Throws.TypeOf<ArgumentException>());
+        }
+
+        [Test]
         public void Withdraw_PositiveAmount_StoresTransactionForNegativeAmount()
         {
             _clock.GetTodayAsString().Returns("1/08/2017");
@@ -39,6 +56,22 @@ namespace BankKata.Tests
             _account.Withdraw(50);
 
             _transactionRepository.Received().Add(new Transaction("1/08/2017", -50));
+        }
+
+        [Test]
+        public void Withdraw_NegativeAmount_ThrowsArgumentException()
+        {
+            void Act() => _account.Withdraw(-1);
+
+            Assert.That(Act, Throws.TypeOf<ArgumentException>());
+        }
+
+        [Test]
+        public void Withdraw_ZeroAmount_ThrowsArgumentException()
+        {
+            void Act() => _account.Withdraw(0);
+            
+            Assert.That(Act, Throws.TypeOf<ArgumentException>());
         }
 
         [Test]
