@@ -32,7 +32,7 @@ namespace BankKata.Tests
         }
 
         [Test]
-        public void Withdrawal_PositiveAmount_StoresTransactionForNegativeAmount()
+        public void Withdraw_PositiveAmount_StoresTransactionForNegativeAmount()
         {
             _clock.GetTodayAsString().Returns("1/08/2017");
 
