@@ -24,25 +24,21 @@ namespace BankKata.Tests
         [Test]
         public void Deposit_PositiveAmount_StoresTransaction()
         {
-            const string theSystemDate = "12/05/2017";
-            const int anAmount = 100;
-            _clock.GetTodayAsString().Returns(theSystemDate);
+            _clock.GetTodayAsString().Returns("12/05/2017");
 
-            _account.Deposit(anAmount);
+            _account.Deposit(100);
 
-            _transactionRepository.Received().Add(new Transaction(theSystemDate, anAmount));
+            _transactionRepository.Received().Add(new Transaction("12/05/2017", 100));
         }
 
         [Test]
         public void Withdrawal_PositiveAmount_StoresTransactionForNegativeAmount()
         {
-            const string theSystemDate = "1/08/2017";
-            const int anAmount = 50;
-            _clock.GetTodayAsString().Returns(theSystemDate);
+            _clock.GetTodayAsString().Returns("1/08/2017");
 
-            _account.Withdraw(anAmount);
+            _account.Withdraw(50);
 
-            _transactionRepository.Received().Add(new Transaction(theSystemDate, -anAmount));
+            _transactionRepository.Received().Add(new Transaction("1/08/2017", -50));
         }
 
         [Test]
