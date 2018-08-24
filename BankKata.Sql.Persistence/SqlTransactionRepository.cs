@@ -17,7 +17,7 @@ namespace BankKata.Sql.Persistence
         
         public void Add(Transaction transaction)
         {
-            var dbTransaction = new DbTransaction
+            var dbTransaction = new TransactionDto
             {
                 TransactionDate = transaction.Date,
                 Amount = transaction.Amount
@@ -33,7 +33,7 @@ namespace BankKata.Sql.Persistence
         {
             using (var db = _databaseFactory.NewDatabase())
             {
-                var transactions = db.Fetch<DbTransaction>("select * from Transactions order by Id");
+                var transactions = db.Fetch<TransactionDto>("select * from Transactions order by Id");
                 return transactions
                     .Select(transaction => new Transaction(transaction.TransactionDate, transaction.Amount))
                     .ToList()
@@ -42,7 +42,7 @@ namespace BankKata.Sql.Persistence
         }
 
         [TableName("Transactions")]
-        private class DbTransaction
+        private class TransactionDto
         {
             public string TransactionDate { get; set; }
             public int Amount { get; set; }
