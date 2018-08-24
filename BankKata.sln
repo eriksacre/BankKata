@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankKata.Sql.Migrate", "Ban
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankKata.Sql.Persistence.Tests", "BankKata.Sql.Persistence.Tests\BankKata.Sql.Persistence.Tests.csproj", "{62D6E3D9-EBC9-4174-8907-82AC68E4B0F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankKata.Sql.Persistence", "BankKata.Sql.Persistence\BankKata.Sql.Persistence.csproj", "{187ABEE2-DD85-4502-A655-70F042698289}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{62D6E3D9-EBC9-4174-8907-82AC68E4B0F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62D6E3D9-EBC9-4174-8907-82AC68E4B0F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62D6E3D9-EBC9-4174-8907-82AC68E4B0F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{187ABEE2-DD85-4502-A655-70F042698289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187ABEE2-DD85-4502-A655-70F042698289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187ABEE2-DD85-4502-A655-70F042698289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187ABEE2-DD85-4502-A655-70F042698289}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

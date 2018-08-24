@@ -3,6 +3,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BankKata.Sql.Persistence\BankKata.Sql.Persistence.csproj" />
     <ProjectReference Include="..\BankKata.Tests\BankKata.Tests.csproj" />
   </ItemGroup>
   <ItemGroup>
