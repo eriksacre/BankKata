@@ -12,7 +12,8 @@ namespace BankKata.Sql.Persistence.Tests
 
         protected override ITransactionRepository NewRepository()
         {
-            return new SqlTransactionRepository(ConnectionString);
+            var factory = new DatabaseFactory(ConnectionString);
+            return new SqlTransactionRepository(factory);
         }
 
         [SetUp]

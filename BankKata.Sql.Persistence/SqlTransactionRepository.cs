@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.SqlClient;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using BankKata.Domain;
 using NPoco;
@@ -10,11 +8,11 @@ namespace BankKata.Sql.Persistence
 {
     public class SqlTransactionRepository : ITransactionRepository
     {
-        private readonly string _connectionString;
+        private readonly DatabaseFactory _databaseFactory;
 
-        public SqlTransactionRepository(string connectionString)
+        public SqlTransactionRepository(DatabaseFactory databaseFactory)
         {
-            _connectionString = connectionString;
+            _databaseFactory = databaseFactory;
         }
         
         public void Add(Transaction transaction)
@@ -25,7 +23,7 @@ namespace BankKata.Sql.Persistence
                 Amount = transaction.Amount
             };
             
-            using (IDatabase db = new Database(_connectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance))
+            using (var db = _databaseFactory.NewDatabase())
             {
                 db.Insert(dbTransaction);
             }
@@ -33,7 +31,7 @@ namespace BankKata.Sql.Persistence
 
         public ReadOnlyCollection<Transaction> AllOrderedByTransactionDate()
         {
-            using (IDatabase db = new Database(_connectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance))
+            using (var db = _databaseFactory.NewDatabase())
             {
                 var transactions = db.Fetch<DbTransaction>("select * from Transactions order by Id");
                 return transactions
@@ -46,7 +44,6 @@ namespace BankKata.Sql.Persistence
         [TableName("Transactions")]
         private class DbTransaction
         {
-            public int Id { get; set; }
             public string TransactionDate { get; set; }
             public int Amount { get; set; }
         }

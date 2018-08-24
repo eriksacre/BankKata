@@ -8,7 +8,8 @@ namespace BankKata.App
     {
         static void Main()
         {
-            var transactionRepository = new SqlTransactionRepository("Server=(localdb)\\mssqllocaldb;Database=BankKata;Trusted_Connection=True");
+            var databaseFactory = new DatabaseFactory("Server=(localdb)\\mssqllocaldb;Database=BankKata;Trusted_Connection=True");
+            var transactionRepository = new SqlTransactionRepository(databaseFactory);
             var console = new Console();
             var statementPrinter = new StatementPrinter(console);
             var clock = new Clock();
