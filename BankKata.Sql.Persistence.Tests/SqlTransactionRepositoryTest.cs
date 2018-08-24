@@ -1,5 +1,4 @@
-﻿using System.Data.SqlClient;
-using BankKata.Domain;
+﻿using BankKata.Domain;
 using BankKata.Tests;
 using NUnit.Framework;
 
