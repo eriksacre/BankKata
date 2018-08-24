@@ -8,18 +8,25 @@ namespace BankKata.App
     {
         static void Main()
         {
-            var databaseFactory = new DatabaseFactory("Server=(localdb)\\mssqllocaldb;Database=BankKata;Trusted_Connection=True");
-            var transactionRepository = new SqlTransactionRepository(databaseFactory);
-            var console = new Console();
-            var statementPrinter = new StatementPrinter(console);
-            var clock = new Clock();
-            var account = new Account(transactionRepository, statementPrinter, clock);
-            
+            var account = SetupAccount();
+
             account.Deposit(1000);
             account.Withdraw(100);
             account.Deposit(500);
             
             account.PrintStatement();
+        }
+
+        private static Account SetupAccount()
+        {
+            var databaseFactory =
+                new DatabaseFactory("Server=(localdb)\\mssqllocaldb;Database=BankKata;Trusted_Connection=True");
+            var transactionRepository = new SqlTransactionRepository(databaseFactory);
+            var console = new Console();
+            var statementPrinter = new StatementPrinter(console);
+            var clock = new Clock();
+            var account = new Account(transactionRepository, statementPrinter, clock);
+            return account;
         }
     }
 }
