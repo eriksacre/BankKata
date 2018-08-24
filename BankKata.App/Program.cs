@@ -25,8 +25,7 @@ namespace BankKata.App
             var console = new Console();
             var statementPrinter = new StatementPrinter(console);
             var clock = new Clock();
-            var account = new Account(transactionRepository, statementPrinter, clock);
-            return account;
+            return new Account(transactionRepository, statementPrinter, clock);
         }
     }
 }
