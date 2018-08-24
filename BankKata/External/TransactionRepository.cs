@@ -13,7 +13,7 @@ namespace BankKata.External
             _transactions.Add(transaction);
         }
 
-        public ReadOnlyCollection<Transaction> All()
+        public ReadOnlyCollection<Transaction> AllOrderedByTransactionDate()
         {
             return _transactions.AsReadOnly();
         }

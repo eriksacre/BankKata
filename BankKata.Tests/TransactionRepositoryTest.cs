@@ -14,7 +14,7 @@ namespace BankKata.Tests
 
             transactionRepository.Add(new Transaction("01/02/2018", 100));
             
-            Assert.That(transactionRepository.All(), Is.EqualTo(new List<Transaction>
+            Assert.That(transactionRepository.AllOrderedByTransactionDate(), Is.EqualTo(new List<Transaction>
             {
                 new Transaction("01/02/2018", 100)
             }));
@@ -27,7 +27,7 @@ namespace BankKata.Tests
             transactionRepository.Add(new Transaction("01/01/2018", 100));
             transactionRepository.Add(new Transaction("02/01/2018", -50));
 
-            var transactions = transactionRepository.All();
+            var transactions = transactionRepository.AllOrderedByTransactionDate();
             
             Assert.That(transactions, Is.EqualTo(new List<Transaction>
             {
