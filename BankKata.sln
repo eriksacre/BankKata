@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankKata", "BankKata\BankKa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankKata.App", "BankKata.App\BankKata.App.csproj", "{2BED5B89-D7CC-476C-BDCB-3DC8530B92F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankKata.Sql.Migrate", "BankKata.Sql.Migrate\BankKata.Sql.Migrate.csproj", "{C62B8316-5722-4231-990D-F22CB2F410A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{2BED5B89-D7CC-476C-BDCB-3DC8530B92F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BED5B89-D7CC-476C-BDCB-3DC8530B92F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BED5B89-D7CC-476C-BDCB-3DC8530B92F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C62B8316-5722-4231-990D-F22CB2F410A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C62B8316-5722-4231-990D-F22CB2F410A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C62B8316-5722-4231-990D-F22CB2F410A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C62B8316-5722-4231-990D-F22CB2F410A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
