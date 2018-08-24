@@ -30,7 +30,7 @@ namespace BankKata.Domain
 
         public void PrintStatement()
         {
-            _statementPrinter.Print(_transactionRepository.AllOrderedByTransactionDate());
+            _statementPrinter.Print(_transactionRepository.AllOrderedByInsertionDate());
         }
         
         [AssertionMethod]

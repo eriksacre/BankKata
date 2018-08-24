@@ -29,7 +29,7 @@ namespace BankKata.Sql.Persistence
             }
         }
 
-        public ReadOnlyCollection<Transaction> AllOrderedByTransactionDate()
+        public ReadOnlyCollection<Transaction> AllOrderedByInsertionDate()
         {
             using (var db = _databaseFactory.NewDatabase())
             {

@@ -78,7 +78,7 @@ namespace BankKata.Tests
         public void PrintStatement_MultipleTransactionsInRepo_PrintsAllTransactions()
         {
             var transactionList = new List<Transaction>().AsReadOnly();
-            _transactionRepository.AllOrderedByTransactionDate().Returns(transactionList);
+            _transactionRepository.AllOrderedByInsertionDate().Returns(transactionList);
             
             _account.PrintStatement();
 

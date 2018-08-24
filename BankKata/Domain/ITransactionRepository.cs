@@ -5,6 +5,6 @@ namespace BankKata.Domain
     public interface ITransactionRepository
     {
         void Add(Transaction transaction);
-        ReadOnlyCollection<Transaction> AllOrderedByTransactionDate();
+        ReadOnlyCollection<Transaction> AllOrderedByInsertionDate();
     }
 }
