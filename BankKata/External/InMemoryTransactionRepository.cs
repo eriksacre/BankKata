@@ -4,7 +4,7 @@ using BankKata.Domain;
 
 namespace BankKata.External
 {
-    public class TransactionRepository : ITransactionRepository
+    public class InMemoryTransactionRepository : ITransactionRepository
     {
         private readonly List<Transaction> _transactions = new List<Transaction>();
         

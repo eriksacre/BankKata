@@ -7,7 +7,7 @@ namespace BankKata.Tests
     {
         protected override ITransactionRepository NewRepository()
         {
-            return new TransactionRepository();
+            return new InMemoryTransactionRepository();
         }
     }
 }
