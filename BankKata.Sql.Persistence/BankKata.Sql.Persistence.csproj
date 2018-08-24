@@ -3,9 +3,9 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BankKata.App\BankKata.App.csproj" />
+    <PackageReference Include="NPoco" Version="3.9.4" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NPoco" Version="3.9.4" />
+    <ProjectReference Include="..\BankKata\BankKata.csproj" />
   </ItemGroup>
 </Project>

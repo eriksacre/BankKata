@@ -1,5 +1,6 @@
 ﻿using BankKata.Domain;
 using BankKata.External;
+using BankKata.Sql.Persistence;
 
 namespace BankKata.App
 {
@@ -7,7 +8,7 @@ namespace BankKata.App
     {
         static void Main()
         {
-            var transactionRepository = new TransactionRepository();
+            var transactionRepository = new SqlTransactionRepository();
             var console = new Console();
             var statementPrinter = new StatementPrinter(console);
             var clock = new Clock();
