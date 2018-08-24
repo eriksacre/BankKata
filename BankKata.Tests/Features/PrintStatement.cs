@@ -7,20 +7,20 @@ namespace BankKata.Tests.Features
 {
     public class PrintStatement
     {
-        private InMemoryTransactionRepository _inMemoryTransactionRepository;
+        private ITransactionRepository _transactionRepository;
         private IConsole _console;
-        private StatementPrinter _statementPrinter;
+        private IStatementPrinter _statementPrinter;
         private IClock _clock;
         private Account _account;
 
         [SetUp]
         public void Setup()
         {
-            _inMemoryTransactionRepository = new InMemoryTransactionRepository();
+            _transactionRepository = new InMemoryTransactionRepository();
             _console = Substitute.For<IConsole>();
             _statementPrinter = new StatementPrinter(_console);
             _clock = Substitute.For<IClock>();
-            _account = new Account(_inMemoryTransactionRepository, _statementPrinter, _clock);
+            _account = new Account(_transactionRepository, _statementPrinter, _clock);
         }
 
         [Test]
