@@ -12,7 +12,7 @@ namespace BankKata.Sql.Persistence.Tests
 
         protected override ITransactionRepository NewRepository()
         {
-            return new SqlTransactionRepository();
+            return new SqlTransactionRepository(ConnectionString);
         }
 
         [SetUp]

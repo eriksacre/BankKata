@@ -10,7 +10,12 @@ namespace BankKata.Sql.Persistence
 {
     public class SqlTransactionRepository : ITransactionRepository
     {
-        private const string ConnectionString = "Server=(localdb)\\mssqllocaldb;Database=BankKata;Trusted_Connection=True";
+        private readonly string _connectionString;
+
+        public SqlTransactionRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
         
         public void Add(Transaction transaction)
         {
@@ -20,7 +25,7 @@ namespace BankKata.Sql.Persistence
                 Amount = transaction.Amount
             };
             
-            using (IDatabase db = new Database(ConnectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance))
+            using (IDatabase db = new Database(_connectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance))
             {
                 db.Insert(dbTransaction);
             }
@@ -28,7 +33,7 @@ namespace BankKata.Sql.Persistence
 
         public ReadOnlyCollection<Transaction> AllOrderedByTransactionDate()
         {
-            using (IDatabase db = new Database(ConnectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance))
+            using (IDatabase db = new Database(_connectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance))
             {
                 var transactions = db.Fetch<DbTransaction>("select * from Transactions order by Id");
                 return transactions
