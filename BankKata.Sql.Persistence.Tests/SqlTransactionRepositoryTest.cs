@@ -19,12 +19,7 @@ namespace BankKata.Sql.Persistence.Tests
         [SetUp]
         public void Setup()
         {
-            using (var connection = new SqlConnection(ConnectionString))
-            {
-                connection.Open();
-                var truncate = new SqlCommand("truncate table Transactions", connection);
-                truncate.ExecuteNonQuery();
-            }
+            new DatabaseCleaner(ConnectionString).Clean();
         }
     }
 }
