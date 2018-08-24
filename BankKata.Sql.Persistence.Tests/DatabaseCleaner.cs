@@ -10,7 +10,7 @@ namespace BankKata.Sql.Persistence.Tests
         // Note:
         // Order is important. First truncate the tables that reference
         // other tables.
-        private static readonly List<string> _tablesToClear = new List<string>
+        private static readonly List<string> TablesToClear = new List<string>
         {
             "Transactions"
         };
@@ -25,14 +25,19 @@ namespace BankKata.Sql.Persistence.Tests
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                foreach (var table in _tablesToClear)
-                {
-                    Truncate(table, connection);
-                }
+                TruncateTables(connection);
             }
         }
 
-        private static void Truncate(string table, SqlConnection connection)
+        private void TruncateTables(SqlConnection connection)
+        {
+            foreach (var table in TablesToClear)
+            {
+                Truncate(table, connection);
+            }
+        }
+
+        private void Truncate(string table, SqlConnection connection)
         {
             var truncate = new SqlCommand($"truncate table {table}", connection);
             truncate.ExecuteNonQuery();
