@@ -5,12 +5,14 @@ using NUnit.Framework;
 
 namespace BankKata.Tests
 {
-    public class TransactionRepositoryTest
+    public abstract class TransactionRepositoryBaseTest
     {
+        protected abstract ITransactionRepository NewRepository();
+        
         [Test]
         public void Add_EmptyTransactionRepo_AddsTransactionToRepo()
         {
-            var transactionRepository = new TransactionRepository();
+            var transactionRepository = NewRepository();
 
             transactionRepository.Add(new Transaction("01/02/2018", 100));
             
@@ -23,7 +25,7 @@ namespace BankKata.Tests
         [Test]
         public void All_MultipleTransactionsInRepo_ReturnsTransactionsInInsertionOrder()
         {
-            var transactionRepository = new TransactionRepository();
+            var transactionRepository = NewRepository();
             transactionRepository.Add(new Transaction("01/01/2018", 100));
             transactionRepository.Add(new Transaction("02/01/2018", -50));
 
