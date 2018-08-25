@@ -19,7 +19,7 @@ namespace BankKata.Sql.Persistence.Tests
         [Test]
         public void ExploreFluentMappings()
         {
-            new DatabaseCleaner(MyFactory.ConnectionString).Clean();
+            new DatabaseCleaner(TestConfiguration.ConnectionString).Clean();
             
             var dto = new Dto("xx-xx-xxxx", 1);
             using (var db = MyFactory.DbFactory.GetDatabase())
@@ -65,8 +65,6 @@ namespace BankKata.Sql.Persistence.Tests
 
     public static class MyFactory
     {
-        public const string ConnectionString = "Server=(localdb)\\mssqllocaldb;Database=BankKata;Trusted_Connection=True";
-        
         public static NPoco.DatabaseFactory DbFactory { get; }
 
         static MyFactory()
@@ -76,7 +74,7 @@ namespace BankKata.Sql.Persistence.Tests
             DbFactory = NPoco.DatabaseFactory.Config(x =>
             {
                 x.UsingDatabase(() =>
-                    new Database(ConnectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance));
+                    new Database(TestConfiguration.ConnectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance));
                 x.WithFluentConfig(fluentConfig);
             });
         }

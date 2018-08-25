@@ -7,18 +7,16 @@ namespace BankKata.Sql.Persistence.Tests
     [TestFixture]
     public class SqlTransactionRepositoryTest : TransactionRepositoryBaseTest
     {
-        private const string ConnectionString = "Server=(localdb)\\mssqllocaldb;Database=BankKata;Trusted_Connection=True";
-
         protected override ITransactionRepository NewRepository()
         {
-            var factory = new DatabaseFactory(ConnectionString);
+            var factory = new DatabaseFactory(TestConfiguration.ConnectionString);
             return new SqlTransactionRepository(factory);
         }
 
         [SetUp]
         public void Setup()
         {
-            new DatabaseCleaner(ConnectionString).Clean();
+            new DatabaseCleaner(TestConfiguration.ConnectionString).Clean();
         }
     }
 }
