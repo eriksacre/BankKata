@@ -8,7 +8,7 @@ namespace BankKata.Sql.Persistence.Tests
     {
         private readonly string _connectionString;
 
-        private static readonly List<string> _doNotTruncate = new List<string>
+        private static readonly List<string> DoNotTruncate = new List<string>
         {
             "SchemaVersions"
         };
@@ -32,7 +32,7 @@ namespace BankKata.Sql.Persistence.Tests
             var tables = GetTableNames();
             var tablesToClear = TablesToClear;
             var missingTables = tables
-                .Where(tableName => !tablesToClear.Contains(tableName) && !_doNotTruncate.Contains(tableName));
+                .Where(tableName => !tablesToClear.Contains(tableName) && !DoNotTruncate.Contains(tableName));
 
             return string.Join(",", missingTables);
         }
