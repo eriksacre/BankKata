@@ -13,7 +13,7 @@ namespace BankKata.Sql.Persistence.Tests
             
             var missingTables = cleaner.MissingTables();
             
-            Assert.That(missingTables, Is.EqualTo(""));
+            Assert.That(missingTables, Is.Empty);
         }
     }
 }

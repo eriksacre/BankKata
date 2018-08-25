@@ -8,7 +8,7 @@ namespace BankKata.Sql.Persistence.Tests
     {
         private readonly string _connectionString;
 
-        private static readonly List<string> DoNotTruncate = new List<string>
+        private static readonly List<string> TablesNotToClear = new List<string>
         {
             "SchemaVersions"
         };
@@ -27,34 +27,11 @@ namespace BankKata.Sql.Persistence.Tests
             }
         }
 
-        public string MissingTables()
+        public List<string> MissingTables()
         {
-            var tables = GetTableNames();
-            var tablesToClear = TablesToClear;
-            var missingTables = tables
-                .Where(tableName => !tablesToClear.Contains(tableName) && !DoNotTruncate.Contains(tableName));
-
-            return string.Join(",", missingTables);
-        }
-
-        private List<string> GetTableNames()
-        {
-            var tables = new List<string>();
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                var command = new SqlCommand("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_TYPE='BASE TABLE'",
-                    connection);
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        tables.Add(reader["TABLE_NAME"].ToString());
-                    }
-                }
-            }
-
-            return tables;
+            return AllTableNames()
+                .Where(tableName => !TablesToClear.Contains(tableName) && !TablesNotToClear.Contains(tableName))
+                .ToList();
         }
 
         protected abstract List<string> TablesToClear { get; }
@@ -71,6 +48,35 @@ namespace BankKata.Sql.Persistence.Tests
         {
             var truncate = new SqlCommand($"truncate table {table}", connection);
             truncate.ExecuteNonQuery();
+        }
+
+        private List<string> AllTableNames()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                return FetchTableNames(connection);
+            }
+        }
+
+        private List<string> FetchTableNames(SqlConnection connection)
+        {
+            var command = new SqlCommand("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_TYPE='BASE TABLE'",
+                connection);
+            using (var reader = command.ExecuteReader())
+            {
+                var tables = new List<string>();
+                AddReaderResultsToList(reader, tables);
+                return tables;
+            }
+        }
+
+        private void AddReaderResultsToList(SqlDataReader reader, List<string> tables)
+        {
+            while (reader.Read())
+            {
+                tables.Add(reader["TABLE_NAME"].ToString());
+            }
         }
     }
 }
