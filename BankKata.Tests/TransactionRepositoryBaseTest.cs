@@ -23,7 +23,7 @@ namespace BankKata.Tests
         }
 
         [Test]
-        public void All_MultipleTransactionsInRepo_ReturnsTransactionsInInsertionOrder()
+        public void AllOrderedByInsertionDate_MultipleTransactionsInRepo_ReturnsTransactionsInInsertionOrder()
         {
             var transactionRepository = NewRepository();
             transactionRepository.Add(new Transaction("01/01/2018", 100));
