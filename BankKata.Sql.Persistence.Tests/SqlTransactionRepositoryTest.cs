@@ -16,7 +16,7 @@ namespace BankKata.Sql.Persistence.Tests
         [SetUp]
         public void Setup()
         {
-            new DatabaseCleaner(TestConfiguration.ConnectionString).Clean();
+            new DatabaseCleaner().Clean();
         }
     }
 }

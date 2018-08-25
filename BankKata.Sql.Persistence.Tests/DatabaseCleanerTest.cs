@@ -7,7 +7,7 @@ namespace BankKata.Sql.Persistence.Tests
         [Test]
         public void VerifyAllTablesAreIncluded()
         {
-            var cleaner = new DatabaseCleaner(TestConfiguration.ConnectionString);
+            var cleaner = new DatabaseCleaner();
             
             var missingTables = cleaner.MissingTables();
             

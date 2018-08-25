@@ -8,16 +8,11 @@ namespace BankKata.Sql.Persistence.Tests
     {
         private readonly string _connectionString;
 
-        private static readonly List<string> TablesNotToClear = new List<string>
-        {
-            "SchemaVersions"
-        };
-
         protected DatabaseCleanerBase(string connectionString)
         {
             _connectionString = connectionString;
         }
-        
+
         public void Clean()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -35,6 +30,8 @@ namespace BankKata.Sql.Persistence.Tests
         }
 
         protected abstract List<string> TablesToClear { get; }
+
+        protected abstract List<string> TablesNotToClear { get; }
 
         private void TruncateTables(SqlConnection connection)
         {

@@ -19,7 +19,7 @@ namespace BankKata.Sql.Persistence.Tests
         [Test]
         public void ExploreFluentMappings()
         {
-            new DatabaseCleaner(TestConfiguration.ConnectionString).Clean();
+            new DatabaseCleaner().Clean();
             
             var dto = new Dto("xx-xx-xxxx", 1);
             using (var db = MyFactory.DbFactory.GetDatabase())
