@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using System.Linq;
+using JetBrains.Annotations;
 using NPoco;
 using NPoco.FluentMappings;
 using NUnit.Framework;
@@ -38,6 +39,7 @@ namespace BankKata.Sql.Persistence.Tests
 
     public class Dto
     {
+        [UsedImplicitly]
         public Dto() {}
         
         public Dto(string date, int amount)
