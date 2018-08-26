@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BankKata.Domain;
-using BankKata.External;
 using NUnit.Framework;
 
 namespace BankKata.Tests
@@ -8,7 +7,7 @@ namespace BankKata.Tests
     public abstract class TransactionRepositoryBaseTest
     {
         protected abstract ITransactionRepository NewRepository();
-        
+
         [Test]
         public void Add_EmptyTransactionRepo_AddsTransactionToRepo()
         {
