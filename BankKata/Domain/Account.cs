@@ -32,7 +32,7 @@ namespace BankKata.Domain
         {
             _statementPrinter.Print(_transactionRepository.AllOrderedByInsertionDate());
         }
-        
+
         [AssertionMethod]
         private static void EnsureAmountIsValid(int amount)
         {

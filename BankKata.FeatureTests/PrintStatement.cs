@@ -1,12 +1,14 @@
 ﻿using BankKata.Domain;
-using BankKata.External;
-using NUnit.Framework;
+using BankKata.Sql.Persistence;
+using BankKata.Sql.Persistence.Tests;
 using NSubstitute;
+using NUnit.Framework;
 
-namespace BankKata.Tests.Features
+namespace BankKata.FeatureTests
 {
     public class PrintStatement
     {
+        private DatabaseFactory _databaseFactory;
         private ITransactionRepository _transactionRepository;
         private IConsole _console;
         private IStatementPrinter _statementPrinter;
@@ -16,7 +18,10 @@ namespace BankKata.Tests.Features
         [SetUp]
         public void Setup()
         {
-            _transactionRepository = new InMemoryTransactionRepository();
+            new DatabaseCleaner().Clean();
+            
+            _databaseFactory = new DatabaseFactory(TestConfiguration.ConnectionString);
+            _transactionRepository = new SqlTransactionRepository(_databaseFactory);
             _console = Substitute.For<IConsole>();
             _statementPrinter = new StatementPrinter(_console);
             _clock = Substitute.For<IClock>();
