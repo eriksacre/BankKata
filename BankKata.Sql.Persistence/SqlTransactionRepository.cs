@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using BankKata.Domain;
+using JetBrains.Annotations;
 using NPoco;
 using Transaction = BankKata.Domain.Transaction;
 
@@ -33,8 +34,8 @@ namespace BankKata.Sql.Persistence
         {
             using (var db = _databaseFactory.NewDatabase())
             {
-                var transactions = db.Fetch<TransactionDto>("select * from Transactions order by Id");
-                return transactions
+                return db.Fetch<TransactionDto>()
+                    .OrderBy(x => x.Id)
                     .Select(transaction => new Transaction(transaction.TransactionDate, transaction.Amount))
                     .ToList()
                     .AsReadOnly();
@@ -44,6 +45,8 @@ namespace BankKata.Sql.Persistence
         [TableName("Transactions")]
         private class TransactionDto
         {
+            [UsedImplicitly]
+            public int Id { get; }
             public string TransactionDate { get; set; }
             public int Amount { get; set; }
         }
